@@ -1,26 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Reminder</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Just Vent Bro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
   <style>
-    body {
+    :root {
+      --bg1: #fce3ec;
+      --bg2: #e6e4f8;
+      --accent: #d8a7c2;
+      --text: #333;
+      --text-soft: #666;
+      --white: #ffffff;
+    }
+
+    * {
       margin: 0;
-      height: 100vh;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Comfortaa', sans-serif;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      background-size: 400% 400%;
+      animation: gradientMove 15s ease infinite;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: white;
-      font-family: sans-serif;
+      min-height: 100vh;
+      padding: 24px;
+      color: var(--text);
     }
-    h1 {
-      font-size: 5rem;
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .wrapper {
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 24px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.07);
+      padding: 40px 30px;
+      max-width: 520px;
+      width: 100%;
       text-align: center;
-      color: #333;
+      animation: fadeIn 1.4s ease both;
+      border: 1px solid #eee;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      font-size: 1.9rem;
+      margin-bottom: 14px;
+    }
+
+    .fade-text {
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+      color: var(--text-soft);
+      height: 1.3rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-align: left;
+    }
+
+    textarea, input[type="email"] {
+      padding: 14px;
+      font-size: 1rem;
+      font-family: inherit;
+      border-radius: 14px;
+      border: 1px solid #ccc;
+      background-color: var(--white);
+      resize: vertical;
+      transition: all 0.3s ease;
+    }
+
+    textarea {
+      min-height: 180px;
+    }
+
+    textarea:focus, input:focus {
+      border-color: var(--accent);
+      outline: none;
+      background-color: #fefefe;
+    }
+
+    button {
+      background-color: var(--accent);
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #c390b2;
+    }
+
+    .note {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      margin-top: 12px;
+      text-align: center;
+      transition: color 0.3s ease, opacity 0.3s ease;
     }
   </style>
 </head>
 <body>
-  <h1>manal go shower</h1>
+
+  <div class="wrapper">
+    <h2>Js Vent Already Bro 💔</h2>
+    <div class="fade-text" id="message">You’re safe here.</div>
+
+    <form id="ventForm">
+      <textarea name="vent" placeholder="Let it all out..." required></textarea>
+      <input type="email" name="email" placeholder="Your email (optional)">
+      <button type="submit">Send 💌</button>
+    </form>
+
+    <div class="note" id="responseMessage">
+      Your message is private. One of our real human listeners will read and may reply.
+    </div>
+  </div>
+
+  <script>
+    // Rotating comfort messages
+    const comfortingPhrases = [
+      "You’re safe here.",
+      "It’s okay to let it out.",
+      "We’re listening.",
+      "You matter.",
+      "You’re doing better than you think.",
+      "This is your space."
+    ];
+
+    let index = 0;
+    setInterval(() => {
+      document.getElementById("message").textContent = comfortingPhrases[index % comfortingPhrases.length];
+      index++;
+    }, 3000);
+
+    // Formspree JS submission (no redirect)
+    const form = document.getElementById("ventForm");
+    const responseMsg = document.getElementById("responseMessage");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      try {
+        const res = await fetch("https://formspree.io/f/mjkrbjqn", {
+          method: "POST",
+          headers: { 'Accept': 'application/json' },
+          body: formData
+        });
+
+        if (res.ok) {
+          form.reset();
+          responseMsg.textContent = "Thank you for venting 💌 We’ve received your message.";
+          responseMsg.style.color = "#4CAF50"; // success color
+        } else {
+          responseMsg.textContent = "Oops, something went wrong. Please try again.";
+          responseMsg.style.color = "#e74c3c"; // error color
+        }
+      } catch (error) {
+        responseMsg.textContent = "Error sending form. Please check your connection.";
+        responseMsg.style.color = "#e74c3c";
+      }
+    });
+  </script>
+
 </body>
 </html>

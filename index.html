@@ -1,191 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Just Vent Bro</title>
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg1: #fce3ec;
-      --bg2: #e6e4f8;
-      --accent: #d8a7c2;
-      --text: #333;
-      --text-soft: #666;
-      --white: #ffffff;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventoes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Clean article theme - light and professional */
+            --background: hsl(0, 0%, 100%);
+            --foreground: hsl(240, 10%, 15%);
+            --article-text: hsl(240, 8%, 20%);
+            --article-text-light: hsl(240, 5%, 50%);
+            --article-border: hsl(240, 6%, 92%);
+            --article-hover: hsl(240, 5%, 98%);
+            --radius: 0.75rem;
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Comfortaa', sans-serif;
-      background: linear-gradient(135deg, var(--bg1), var(--bg2));
-      background-size: 400% 400%;
-      animation: gradientMove 15s ease infinite;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 24px;
-      color: var(--text);
-    }
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--background);
+            color: var(--article-text);
+            line-height: 1.6;
+            font-weight: 300;
+        }
 
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
 
-    .wrapper {
-      background: rgba(255, 255, 255, 0.92);
-      border-radius: 24px;
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.07);
-      padding: 40px 30px;
-      max-width: 520px;
-      width: 100%;
-      text-align: center;
-      animation: fadeIn 1.4s ease both;
-      border: 1px solid #eee;
-    }
+        @media (min-width: 1024px) {
+            .container {
+                padding-top: 6rem;
+                padding-bottom: 6rem;
+            }
+        }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        /* Header Styles */
+        .article-header {
+            margin-bottom: 4rem;
+        }
 
-    h2 {
-      font-size: 1.9rem;
-      margin-bottom: 14px;
-    }
+        @media (min-width: 1024px) {
+            .article-header {
+                margin-bottom: 5rem;
+            }
+        }
 
-    .fade-text {
-      font-size: 0.95rem;
-      margin-bottom: 24px;
-      color: var(--text-soft);
-      height: 1.3rem;
-    }
+        .article-title {
+            font-size: 2.25rem;
+            font-weight: 300;
+            color: var(--article-text);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      text-align: left;
-    }
+        @media (min-width: 1024px) {
+            .article-title {
+                font-size: 3rem;
+            }
+        }
 
-    textarea, input[type="email"] {
-      padding: 14px;
-      font-size: 1rem;
-      font-family: inherit;
-      border-radius: 14px;
-      border: 1px solid #ccc;
-      background-color: var(--white);
-      resize: vertical;
-      transition: all 0.3s ease;
-    }
+        @media (min-width: 1280px) {
+            .article-title {
+                font-size: 3.75rem;
+            }
+        }
 
-    textarea {
-      min-height: 180px;
-    }
+        .title-underline {
+            width: 6rem;
+            height: 2px;
+            background-color: var(--article-border);
+        }
 
-    textarea:focus, input:focus {
-      border-color: var(--accent);
-      outline: none;
-      background-color: #fefefe;
-    }
+        /* Content Styles */
+        .article-content {
+            margin-bottom: 5rem;
+        }
 
-    button {
-      background-color: var(--accent);
-      color: white;
-      font-size: 1rem;
-      font-weight: bold;
-      padding: 12px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
+        @media (min-width: 1024px) {
+            .article-content {
+                margin-bottom: 6rem;
+            }
+        }
 
-    button:hover {
-      background-color: #c390b2;
-    }
+        .article-paragraph {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--article-text);
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
 
-    .note {
-      font-size: 0.85rem;
-      color: var(--text-soft);
-      margin-top: 12px;
-      text-align: center;
-      transition: color 0.3s ease, opacity 0.3s ease;
-    }
-  </style>
+        @media (min-width: 1024px) {
+            .article-paragraph {
+                font-size: 1.25rem;
+                margin-bottom: 3rem;
+            }
+        }
+
+        /* Image Styles */
+        .article-image-wrapper {
+            margin: 3rem 0;
+        }
+
+        @media (min-width: 1024px) {
+            .article-image-wrapper {
+                margin: 4rem 0;
+            }
+        }
+
+        .article-image {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer Styles */
+        .article-footer {
+            margin-top: 5rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--article-border);
+        }
+
+        @media (min-width: 1024px) {
+            .article-footer {
+                margin-top: 6rem;
+            }
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .footer-content {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        .author-info h3 {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--article-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .author-name {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--article-text);
+        }
+
+        @media (min-width: 1024px) {
+            .author-name {
+                font-size: 1.875rem;
+            }
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background-color: var(--article-hover);
+            border: 1px solid var(--article-border);
+            color: var(--article-text-light);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .social-link:hover {
+            background-color: var(--article-border);
+        }
+
+        .social-link svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <article>
+            <!-- Article Header -->
+            <header class="article-header">
+                <h1 class="article-title">My Friend Talha: A Story of Courage and Identity</h1>
+                <div class="title-underline"></div>
+            </header>
 
-  <div class="wrapper">
-    <h2>Js Vent Already Bro 💔<h2>
-    <div class="fade-text" id="message">You’re safe here.</div>
+            <!-- Article Content -->
+            <div class="article-content">
+                <p class="article-paragraph">
+                    Talha is one of the most genuine and kind-hearted people I know. Over time, he confided in me about something deeply personal—his sexuality. Talha is gay. This isn’t something he chose or was influenced into; it’s simply who he is. From a young age, he began to notice that he was attracted to other boys, even though he didn’t have the words for it at the time. For years, he kept this part of himself hidden, unsure how the world around him—especially in a society that often silences such topics—would react. But what’s remarkable is how calmly and clearly he understands his identity. He doesn’t view it as something to be ashamed of, but as something to be embraced.
+                </p>
+                
+                <p class="article-paragraph">
+                   Living in Pakistan, Talha has faced quiet struggles that most people will never see. He has dealt with isolation, judgment, and the fear of being misunderstood. Yet despite all this, he carries himself with immense courage. He’s never tried to make his sexuality his whole identity, but he also refuses to live in fear of it. What’s most admirable is how open-hearted he remains—willing to have conversations, answer questions, and calmly correct the misconceptions people might have. He doesn’t want to be seen as “different” or “wrong.” He just wants to be seen as human.
+                </p>
 
-    <form id="ventForm">
-      <textarea name="vent" placeholder="Let it all out..." required></textarea>
-      <input type="email" name="email" placeholder="Your email (optional)">
-      <button type="submit">Send 💌</button>
-    </form>
+                <!-- First Image -->
+                <figure class="article-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=450&fit=crop&crop=entropy&auto=format&q=80" 
+                         alt="Clean workspace with laptop" 
+                         class="article-image">
+                </figure>
 
-    <div class="note" id="responseMessage">
-      Your message is private. One of our real human listeners will read and reply. A real voice note will be attached to an email which will then be sent to you
+                <p class="article-paragraph">
+                   Talha’s story matters because it challenges the silence around LGBTQ+ people in our culture. There are so many others like him who feel invisible or alone. By sharing his truth, Talha isn’t just standing up for himself—he’s helping others feel seen too. I’m proud to call him my friend, and I hope that his courage can inspire more understanding, empathy, and openness. At the end of the day, we all just want to be accepted for who we truly are.
+                </p>
+                
+                <p class="article-paragraph">
+                   There were small moments throughout Talha’s childhood that slowly helped him understand his sexuality. While other boys around him talked about crushes on girls or admired female celebrities, Talha realized his feelings didn’t align with theirs. He found himself quietly drawn to male characters in movies or felt a sense of admiration and emotional connection toward certain classmates—feelings he couldn’t explain at the time. In school, he’d sometimes wonder why he didn’t relate to the excitement his peers felt over girls, and why instead he felt nervous around certain boys. It wasn’t about physicality—it was about a deeper sense of connection and comfort. These early scenarios weren’t loud or dramatic; they were quiet realizations that, over time, helped him piece together an important truth about himself.
+                </p>
+
+                <!-- Second Image -->
+                <figure class="article-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=450&fit=crop&crop=entropy&auto=format&q=80" 
+                         alt="Modern office interior" 
+                         class="article-image">
+                </figure>
+            </div>
+
+            <!-- Author Section -->
+            <footer class="article-footer">
+                <div class="footer-content">
+                    <div class="author-info">
+                        <h3>Written by</h3>
+                        <p class="author-name">Anonymous</p>
+                    </div>
+                    
+                    <!-- Social Links -->
+                
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </footer>
+        </article>
     </div>
-  </div>
-
-  <script>
-    // Rotating comfort messages
-    const comfortingPhrases = [
-      "You’re safe here.",
-      "It’s okay to let it out.",
-      "We’re listening.",
-      "You matter.",
-      "You’re doing better than you think.",
-      "This is your space."
-    ];
-
-    let index = 0;
-    setInterval(() => {
-      document.getElementById("message").textContent = comfortingPhrases[index % comfortingPhrases.length];
-      index++;
-    }, 3000);
-
-    // Formspree JS submission (no redirect)
-    const form = document.getElementById("ventForm");
-    const responseMsg = document.getElementById("responseMessage");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const formData = new FormData(form);
-
-      try {
-        const res = await fetch("https://formspree.io/f/mjkrbjqn", {
-          method: "POST",
-          headers: { 'Accept': 'application/json' },
-          body: formData
-        });
-
-        if (res.ok) {
-          form.reset();
-          responseMsg.textContent = "Thank you for venting 💌 We’ve received your message.";
-          responseMsg.style.color = "#4CAF50"; // success color
-        } else {
-          responseMsg.textContent = "Oops, something went wrong. Please try again.";
-          responseMsg.style.color = "#e74c3c"; // error color
-        }
-      } catch (error) {
-        responseMsg.textContent = "Error sending form. Please check your connection.";
-        responseMsg.style.color = "#e74c3c";
-      }
-    });
-  </script>
-
 </body>
 </html>

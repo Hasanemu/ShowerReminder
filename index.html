@@ -3,275 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ventoes</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <title>Who's Wrong?</title>
+    <!-- Google Fonts - Quicksand -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            /* Clean article theme - light and professional */
-            --background: hsl(0, 0%, 100%);
-            --foreground: hsl(240, 10%, 15%);
-            --article-text: hsl(240, 8%, 20%);
-            --article-text-light: hsl(240, 5%, 50%);
-            --article-border: hsl(240, 6%, 92%);
-            --article-hover: hsl(240, 5%, 98%);
-            --radius: 0.75rem;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* Custom styles for the Quicksand font and overall body */
         body {
             font-family: 'Quicksand', sans-serif;
-            background-color: var(--background);
-            color: var(--article-text);
-            line-height: 1.6;
-            font-weight: 300;
-        }
-
-        .container {
-            max-width: 1024px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-            padding-top: 4rem;
-            padding-bottom: 4rem;
-        }
-
-        @media (min-width: 1024px) {
-            .container {
-                padding-top: 6rem;
-                padding-bottom: 6rem;
-            }
-        }
-
-        /* Header Styles */
-        .article-header {
-            margin-bottom: 4rem;
-        }
-
-        @media (min-width: 1024px) {
-            .article-header {
-                margin-bottom: 5rem;
-            }
-        }
-
-        .article-title {
-            font-size: 2.25rem;
-            font-weight: 300;
-            color: var(--article-text);
-            line-height: 1.1;
-            margin-bottom: 2rem;
-        }
-
-        @media (min-width: 1024px) {
-            .article-title {
-                font-size: 3rem;
-            }
-        }
-
-        @media (min-width: 1280px) {
-            .article-title {
-                font-size: 3.75rem;
-            }
-        }
-
-        .title-underline {
-            width: 6rem;
-            height: 2px;
-            background-color: var(--article-border);
-        }
-
-        /* Content Styles */
-        .article-content {
-            margin-bottom: 5rem;
-        }
-
-        @media (min-width: 1024px) {
-            .article-content {
-                margin-bottom: 6rem;
-            }
-        }
-
-        .article-paragraph {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--article-text);
-            font-weight: 300;
-            margin-bottom: 2rem;
-        }
-
-        @media (min-width: 1024px) {
-            .article-paragraph {
-                font-size: 1.25rem;
-                margin-bottom: 3rem;
-            }
-        }
-
-        /* Image Styles */
-        .article-image-wrapper {
-            margin: 3rem 0;
-        }
-
-        @media (min-width: 1024px) {
-            .article-image-wrapper {
-                margin: 4rem 0;
-            }
-        }
-
-        .article-image {
-            width: 100%;
-            height: auto;
-            border-radius: var(--radius);
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-        }
-
-        /* Footer Styles */
-        .article-footer {
-            margin-top: 5rem;
-            padding-top: 3rem;
-            border-top: 1px solid var(--article-border);
-        }
-
-        @media (min-width: 1024px) {
-            .article-footer {
-                margin-top: 6rem;
-            }
-        }
-
-        .footer-content {
+            background-color: #f8f8f8; /* Off-white background */
             display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        @media (min-width: 1024px) {
-            .footer-content {
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-            }
-        }
-
-        .author-info h3 {
-            font-size: 1.125rem;
-            font-weight: 500;
-            color: var(--article-text);
-            margin-bottom: 0.5rem;
-        }
-
-        .author-name {
-            font-size: 1.5rem;
-            font-weight: 300;
-            color: var(--article-text);
-        }
-
-        @media (min-width: 1024px) {
-            .author-name {
-                font-size: 1.875rem;
-            }
-        }
-
-        /* Social Links */
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
             justify-content: center;
-            width: 3rem;
-            height: 3rem;
-            border-radius: 50%;
-            background-color: var(--article-hover);
-            border: 1px solid var(--article-border);
-            color: var(--article-text-light);
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .social-link:hover {
-            background-color: var(--article-border);
-        }
-
-        .social-link svg {
-            width: 1.25rem;
-            height: 1.25rem;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .container {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            color: #333; /* Dark gray text for contrast */
+            position: relative; /* Needed for absolute positioning of the phrase */
+            overflow: hidden; /* Hide any overflow from absolute positioning */
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <article>
-            <!-- Article Header -->
-            <header class="article-header">
-                <h1 class="article-title">My Friend Talha: A Story of Courage and Identity</h1>
-                <div class="title-underline"></div>
-            </header>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen p-4">
+    <!-- "plz hesitate exclusive" text - big, bold, and out of the box -->
+    <p class="absolute top-8 left-1/2 -translate-x-1/2 bg-black text-white text-6xl font-extrabold px-6 py-3 rounded-xl shadow-2xl z-10 whitespace-nowrap -rotate-3 transform origin-center
+              sm:text-5xl sm:px-5 sm:py-2
+              md:text-6xl md:px-6 md:py-3">
+        plz hesitate exclusive
+    </p>
 
-            <!-- Article Content -->
-            <div class="article-content">
-                <p class="article-paragraph">
-                    Talha is one of the most genuine and kind-hearted people I know. Over time, he confided in me about something deeply personal—his sexuality. Talha is gay. This isn’t something he chose or was influenced into; it’s simply who he is. From a young age, he began to notice that he was attracted to other boys, even though he didn’t have the words for it at the time. For years, he kept this part of himself hidden, unsure how the world around him—especially in a society that often silences such topics—would react. But what’s remarkable is how calmly and clearly he understands his identity. He doesn’t view it as something to be ashamed of, but as something to be embraced.
-                </p>
-                
-                <p class="article-paragraph">
-                   Living in Pakistan, Talha has faced quiet struggles that most people will never see. He has dealt with isolation, judgment, and the fear of being misunderstood. Yet despite all this, he carries himself with immense courage. He’s never tried to make his sexuality his whole identity, but he also refuses to live in fear of it. What’s most admirable is how open-hearted he remains—willing to have conversations, answer questions, and calmly correct the misconceptions people might have. He doesn’t want to be seen as “different” or “wrong.” He just wants to be seen as human.
-                </p>
+    <div class="bg-white p-8 rounded-xl shadow-lg max-w-md w-full text-center border border-gray-200 relative z-0 mt-32 sm:mt-24 md:mt-32">
+        <h1 class="text-4xl font-extrabold text-gray-900 mb-8">Who's Wrong?</h1>
 
-                <!-- First Image -->
-                <figure class="article-image-wrapper">
-                    <img src="lgbtq.avif" 
-                         alt="Clean workspace with laptop" 
-                         class="article-image">
-                </figure>
-
-                <p class="article-paragraph">
-                   Talha’s story matters because it challenges the silence around LGBTQ+ people in our culture. There are so many others like him who feel invisible or alone. By sharing his truth, Talha isn’t just standing up for himself—he’s helping others feel seen too. I’m proud to call him my friend, and I hope that his courage can inspire more understanding, empathy, and openness. At the end of the day, we all just want to be accepted for who we truly are.
-                </p>
-                
-                <p class="article-paragraph">
-                   There were small moments throughout Talha’s childhood that slowly helped him understand his sexuality. While other boys around him talked about crushes on girls or admired female celebrities, Talha realized his feelings didn’t align with theirs. He found himself quietly drawn to male characters in movies or felt a sense of admiration and emotional connection toward certain classmates—feelings he couldn’t explain at the time. In school, he’d sometimes wonder why he didn’t relate to the excitement his peers felt over girls, and why instead he felt nervous around certain boys. It wasn’t about physicality—it was about a deeper sense of connection and comfort. These early scenarios weren’t loud or dramatic; they were quiet realizations that, over time, helped him piece together an important truth about himself.
-                </p>
-
-                <!-- Second Image -->
-                <figure class="article-image-wrapper">
-                    <img src="roblox.png" 
-                         alt="Modern office interior" 
-                         class="article-image">
-                </figure>
+        <div class="space-y-6 mb-8">
+            <!-- Box 1 -->
+            <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Name 1</h2>
+                <input type="text" id="name1Input" placeholder="Enter first name"
+                       class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 text-lg bg-white text-gray-800">
             </div>
 
-            <!-- Author Section -->
-            <footer class="article-footer">
-                <div class="footer-content">
-                    <div class="author-info">
-                        <h3>Written by</h3>
-                        <p class="author-name">Anonymous</p>
-                    </div>
-                    
-                    <!-- Social Links -->
-                
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </footer>
-        </article>
+            <!-- Box 2 -->
+            <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Name 2</h2>
+                <input type="text" id="name2Input" placeholder="Enter second name"
+                       class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 text-lg bg-white text-gray-800">
+            </div>
+        </div>
+
+        <!-- Check Button -->
+        <button id="checkButton"
+                class="w-full bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 text-xl shadow-md">
+            Check Who's Wrong!
+        </button>
+
+        <!-- Result Display -->
+        <div id="resultDisplay" class="mt-8 p-6 bg-gray-100 rounded-lg border border-gray-300 text-gray-800 text-2xl font-bold hidden">
+            <!-- Result will be displayed here -->
+        </div>
     </div>
+
+    <script>
+        // Get references to HTML elements
+        const name1Input = document.getElementById('name1Input');
+        const name2Input = document.getElementById('name2Input');
+        const checkButton = document.getElementById('checkButton');
+        const resultDisplay = document.getElementById('resultDisplay');
+
+        // Add event listener to the button
+        checkButton.addEventListener('click', () => {
+            // Get the names from the input fields and convert to lowercase for case-insensitive comparison
+            const name1 = name1Input.value.trim().toLowerCase();
+            const name2 = name2Input.value.trim().toLowerCase();
+
+            let resultMessage = '';
+
+            // Check if 'talha' is present in either name
+            if (name1.includes('talha') || name2.includes('talha')) {
+                resultMessage = "Talha is always wrong!";
+            } else {
+                resultMessage = "Neither Talha is here, so no one is wrong here!";
+            }
+
+            // Display the result message
+            resultDisplay.textContent = resultMessage;
+            resultDisplay.classList.remove('hidden'); // Make the result display visible
+
+            // Clear the input fields after checking
+            name1Input.value = '';
+            name2Input.value = '';
+        });
+    </script>
 </body>
 </html>

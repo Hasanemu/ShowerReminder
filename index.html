@@ -1,93 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Who's Wrong?</title>
-    <!-- Google Fonts - Quicksand -->
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS CDN for styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom styles for the Quicksand font and overall body */
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: #f8f8f8; /* Off-white background */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-            color: #333; /* Dark gray text for contrast */
-            position: relative; /* Needed for absolute positioning of the phrase */
-            overflow: hidden; /* Hide any overflow from absolute positioning */
-        }
-    </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Speed Tester</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-color: #fff;
+      font-family: 'Quicksand', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #d60000;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 40px;
+    }
+
+    .speed-box {
+      font-size: 6rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      transition: all 0.1s ease-in-out;
+      text-transform: lowercase;
+    }
+
+    .unit {
+      font-size: 2.5rem;
+      color: #aa0000;
+    }
+
+    button {
+      background-color: #d60000;
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      font-size: 1.2rem;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 50px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #aa0000;
+    }
+  </style>
 </head>
-<body class="bg-gray-50 flex items-center justify-center min-h-screen p-4">
-    <div class="bg-white p-8 rounded-xl shadow-lg max-w-md w-full text-center border border-gray-200 relative z-0">
-        <h1 class="text-4xl font-extrabold text-gray-900 mb-8">Who's Wrong?</h1>
+<body>
 
-        <div class="space-y-6 mb-8">
-            <!-- Box 1 -->
-            <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Name 1</h2>
-                <input type="text" id="name1Input" placeholder="Enter first name"
-                       class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 text-lg bg-white text-gray-800">
-            </div>
+  <h1>Internet Speed Test</h1>
+  <div class="speed-box" id="speed">0.00<span class="unit"> MB/s</span></div>
+  <button onclick="startTest()">Start Test</button>
 
-            <!-- Box 2 -->
-            <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Name 2</h2>
-                <input type="text" id="name2Input" placeholder="Enter second name"
-                       class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 text-lg bg-white text-gray-800">
-            </div>
-        </div>
+  <script>
+    function startTest() {
+      const speedEl = document.getElementById('speed');
+      let ticks = 0;
 
-        <!-- Check Button -->
-        <button id="checkButton"
-                class="w-full bg-gray-800 hover:bg-black text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 text-xl shadow-md">
-            Check Who's Wrong!
-        </button>
+      const interval = setInterval(() => {
+        ticks++;
+        if (ticks > 60) {
+          speedEl.innerHTML = 'dumbass';
+          clearInterval(interval);
+        } else {
+          let fluctuation = (Math.random() * 280).toFixed(2);
+          speedEl.innerHTML = fluctuation + '<span class="unit"> MB/s</span>';
+        }
+      }, 60); // fast fluctuation
+    }
+  </script>
 
-        <!-- Result Display -->
-        <div id="resultDisplay" class="mt-8 p-6 bg-gray-100 rounded-lg border border-gray-300 text-gray-800 text-2xl font-bold hidden">
-            <!-- Result will be displayed here -->
-        </div>
-    </div>
-
-    <script>
-        // Get references to HTML elements
-        const name1Input = document.getElementById('name1Input');
-        const name2Input = document.getElementById('name2Input');
-        const checkButton = document.getElementById('checkButton');
-        const resultDisplay = document.getElementById('resultDisplay');
-
-        // Add event listener to the button
-        checkButton.addEventListener('click', () => {
-            // Get the names from the input fields and convert to lowercase for case-insensitive comparison
-            const name1 = name1Input.value.trim().toLowerCase();
-            const name2 = name2Input.value.trim().toLowerCase();
-
-            let resultMessage = '';
-
-            // Check if 'talha' is present in either name
-            if (name1.includes('talha') || name2.includes('talha')) {
-                resultMessage = "Talha is always wrong!";
-            } else {
-                resultMessage = "Neither Talha is here, so no one is wrong here!";
-            }
-
-            // Display the result message
-            resultDisplay.textContent = resultMessage;
-            resultDisplay.classList.remove('hidden'); // Make the result display visible
-
-            // Clear the input fields after checking
-            name1Input.value = '';
-            name2Input.value = '';
-        });
-    </script>
 </body>
 </html>
